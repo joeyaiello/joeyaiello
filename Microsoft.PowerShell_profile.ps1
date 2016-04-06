@@ -17,3 +17,5 @@ New-Alias -name updatedb -value C:\Users\jaiello\AppData\Local\locate\Update-Loc
 . 'C:\Users\jaiello\Documents\WindowsPowerShell\Modules\posh-git\profile.example.ps1'
 
 bash -c '/usr/games/fortune | /usr/games/cowsay -f tux'
+
+$env:path += ';C:\OpenSSH-Win64'
