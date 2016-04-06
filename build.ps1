@@ -1,1 +1,1 @@
-cp .\Microsoft.PowerShell_profile.ps1 $PSHome 
+cp .\Microsoft.PowerShell_profile.ps1 $profile
