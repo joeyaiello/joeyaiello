@@ -3,6 +3,10 @@
 function subl { &"${Env:ProgramFiles}\Sublime Text 3\sublime_text.exe" $args }
 if(Test-Path Function:\Prompt) {Rename-Item Function:\Prompt PrePoshGitPrompt -Force}
 
+# Make sure ssh-agent/add can be loaded by posh-git
+Set-Alias ssh-agent "$env:ProgramFiles\git\usr\bin\ssh-agent.exe"
+Set-Alias ssh-add "$env:ProgramFiles\git\usr\bin\ssh-add.exe"
+
 # Load posh-git example profile
 . 'C:\tools\poshgit\dahlbyk-posh-git-7acc70b\profile.example.ps1'
 
