@@ -1,4 +1,3 @@
-
 function subl { &"${Env:ProgramFiles}\Sublime Text 3\sublime_text.exe" $args }
 
 # Make sure ssh-agent/add can be loaded by posh-git
