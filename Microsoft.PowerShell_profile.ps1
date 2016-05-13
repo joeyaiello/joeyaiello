@@ -23,7 +23,10 @@ New-Alias -name updatedb -value C:\Users\jaiello\AppData\Local\locate\Update-Loc
 
 bash -c '/usr/games/fortune | /usr/games/cowsay -f tux'
 
+# All last minute PATH additions 
 $env:path += ';C:\OpenSSH-Win64'
+$env:path += ";${env:SystemRoot}\Microsoft.Net\Framework\v4.0.30319"
 
 # Add F5 key binding for PSReadline's CaptureScreen
 Set-PSReadlineKeyHandler -Function CaptureScreen -Chord Ctrl+[
+
