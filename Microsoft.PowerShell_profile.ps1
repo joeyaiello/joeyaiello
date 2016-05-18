@@ -23,6 +23,9 @@ New-Alias -name updatedb -value C:\Users\jaiello\AppData\Local\locate\Update-Loc
 # touch
 function touch { New-Item -Type File $args }
 
+# s == start
+New-Alias -Name s -Value start
+
 bash -c '/usr/games/fortune | /usr/games/cowsay -f tux'
 
 # All last minute PATH additions 
