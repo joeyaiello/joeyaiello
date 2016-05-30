@@ -26,8 +26,6 @@ function touch { New-Item -Type File $args }
 # s == start
 New-Alias -Name s -Value start
 
-bash -c '/usr/games/fortune | /usr/games/cowsay -f tux'
-
 # All last minute PATH additions 
 $env:path += ';C:\OpenSSH-Win64'
 $env:path += ";${env:SystemRoot}\Microsoft.Net\Framework\v4.0.30319"
