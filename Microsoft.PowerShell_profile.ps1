@@ -29,6 +29,7 @@ New-Alias -Name s -Value start
 # All last minute PATH additions 
 $env:path += ';C:\OpenSSH-Win64'
 $env:path += ";${env:SystemRoot}\Microsoft.Net\Framework\v4.0.30319"
+$env:path += ";C:\tools\nssm-2.24\win64"
 
 # Add F5 key binding for PSReadline's CaptureScreen
 Set-PSReadlineKeyHandler -Function CaptureScreen -Chord Ctrl+[
