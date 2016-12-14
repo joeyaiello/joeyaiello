@@ -26,6 +26,12 @@ function touch { New-Item -Type File $args }
 # s == start
 New-Alias -Name s -Value start
 
+# GNU-like which
+function which($name)
+{
+    Get-Command -Name $name | Select-Object -ExpandProperty Definition
+}
+
 # All last minute PATH additions 
 $env:path += ';C:\OpenSSH-Win64'
 $env:path += ";${env:SystemRoot}\Microsoft.Net\Framework\v4.0.30319"
