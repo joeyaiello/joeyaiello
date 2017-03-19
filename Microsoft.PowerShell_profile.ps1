@@ -23,8 +23,7 @@ function touch { New-Item -Type File $args }
 New-Alias -Name s -Value start
 
 # GNU-like which
-function which($name)
-{
+function which($name) {
     Get-Command -Name $name | Select-Object -ExpandProperty Definition
 }
 
@@ -35,3 +34,8 @@ $env:path += ";C:\tools\nssm-2.24\win64"
 
 # Add F5 key binding for PSReadline's CaptureScreen
 Set-PSReadlineKeyHandler -Function CaptureScreen -Chord Ctrl+[
+
+# PSDefaultParameterValues
+$PSDefaultParameterValues = @{
+    "Install-Module:Scope"="CurrentUser"
+}
