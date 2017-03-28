@@ -2,16 +2,18 @@
 Set-Alias ssh-agent "$env:ProgramFiles\git\usr\bin\ssh-agent.exe"
 Set-Alias ssh-add "$env:ProgramFiles\git\usr\bin\ssh-add.exe"
 
-# Load posh-git example profile
-Import-Module posh-git
+if ($isWindows) {
+    # Load posh-git example profile
+    Import-Module posh-git
 
-# Create posh-git prompt
-function global:prompt {
-    $realLASTEXITCODE = $LASTEXITCODE
-    Write-Host($pwd.ProviderPath) -nonewline
-    Write-VcsStatus
-    $global:LASTEXITCODE = $realLASTEXITCODE
-    return "> "
+    # Create posh-git prompt
+    function global:prompt {
+        $realLASTEXITCODE = $LASTEXITCODE
+        Write-Host($pwd.ProviderPath) -nonewline
+        Write-VcsStatus
+        $global:LASTEXITCODE = $realLASTEXITCODE
+        return "> "
+    }
 }
 
 # touch
