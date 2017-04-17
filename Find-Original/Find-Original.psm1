@@ -18,20 +18,30 @@ function Find-UniqueFile {
         # An optional location to which the unique files will be copied.
         [Parameter()]
         [System.IO.Directory]
-        $Destination
+        $Destination,
+
+        # .PARAMETER BySize
+        # Size matters when comparing
+        [Parameter()]
+        [switch]
+        $BySize
     )
 
     $SourceFiles = Get-ChildItem -Recurse $Source
     $TargetFiles = Get-ChildItem -Recurse $Target
 
-    $UniqueFilenames = (Compare-Object $SourceFiles.PSChildName $TargetFiles | ? SideIndicator -like '=>').InputObject
+    if ($BySize) {
+        $UniqueFilenames = (Compare-Object $SourceFiles $TargetFiles -Property PSChildName,Length | ? SideIndicator -like '=>').InputObject
+    }
+    else {
+        $UniqueFilenames = (Compare-Object $SourceFiles.PSChildName $TargetFiles | ? SideIndicator -like '=>').InputObject
+    }
 
     #$UnqiueFiles = foreach($i in $UniqueFilenames) {
     #    $UniqueFile = $TargetFiles | Where-Object PSChildName -like $i.PSChildName
     #}
 
     $TargetFiles | Where-Object {$UniqueFilenames.PSChildName.Contains($_.PSChildName)}
-
 }
 
 Export-ModuleMember -Function Find-UniqueFile
