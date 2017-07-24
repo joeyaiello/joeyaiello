@@ -1,1 +1,1 @@
-target foo
+target foo with some extra data
