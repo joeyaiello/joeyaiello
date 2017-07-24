@@ -31,10 +31,11 @@ function Find-UniqueFile {
     $TargetFiles = Get-ChildItem -Recurse $Target
 
     if ($BySize) {
-        $UniqueFilenames = (Compare-Object $SourceFiles $TargetFiles -Property PSChildName,Length | ? SideIndicator -like '=>').InputObject
+        $UniqueFilenames = Compare-Object $SourceFiles $TargetFiles -Property PSChildName,Length -PassThru | Where-Object SideIndicator -like '=>'
     }
     else {
-        $UniqueFilenames = (Compare-Object $SourceFiles.PSChildName $TargetFiles | ? SideIndicator -like '=>').InputObject
+#        $UniqueFilenames = (Compare-Object $SourceFiles.PSChildName $TargetFiles | ? SideIndicator -like '=>').InputObject
+         $UniqueFilenames = Compare-Object $SourceFiles $TargetFiles -PassThru | Where-Object SideIndicator -like '=>'
     }
 
     #$UnqiueFiles = foreach($i in $UniqueFilenames) {
