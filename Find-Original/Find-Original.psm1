@@ -35,7 +35,7 @@ function Find-UniqueFile {
     }
     else {
 #        $UniqueFilenames = (Compare-Object $SourceFiles.PSChildName $TargetFiles | ? SideIndicator -like '=>').InputObject
-         $UniqueFilenames = Compare-Object $SourceFiles $TargetFiles -PassThru | Where-Object SideIndicator -like '=>'
+         $UniqueFilenames = Compare-Object $SourceFiles $TargetFiles -Property PSChildName -PassThru | Where-Object SideIndicator -like '=>'
     }
 
     #$UnqiueFiles = foreach($i in $UniqueFilenames) {
