@@ -15,21 +15,15 @@ Import-Module $ModuleManifestPath
 Describe 'Unit Tests' {
     It 'finds uniquely named files' {
         $correct = (Get-Item "$PSScriptRoot\mockTarget\bar.txt").FullName
-        if ($correct -isnot [array]) { $correct = [array]$correct }
-
         $result = (Find-UniqueFile -Source "$PSScriptRoot\mockSource" -Target "$PSScriptRoot\mockTarget").FullName
-        if ($result -isnot [array]) { $result = [array]$result }
 
-        $result | Should MatchArrayUnordered $correct
+        ($result -Join ":") | Should Be ($correct -Join ":")
     }
 
     It 'finds uniquely sized files' {
-        $correct = (Get-ChildItem "$PSScriptRoot\mockTarget")
-        if ($correct -isnot [array]) { $correct = [array]$correct }
+        $correct = (Get-ChildItem "$PSScriptRoot\mockTarget" | sort-object name).FullName
+        $result = (Find-UniqueFile -Source "$PSScriptRoot\mockSource" -Target "$PSScriptRoot\mockTarget" -BySize | sort-object name).FullName
 
-        $result = (Find-UniqueFile -Source "$PSScriptRoot\mockSource" -Target "$PSScriptRoot\mockTarget" -BySize)
-        if ($result -isnot [array]) { $result = [array]$result }
-
-        $result.FullName | Should MatchArrayUnordered $correct.FullName
+        ($result -Join ":") | Should BeExactly ($correct -Join ":")
     }
 }
