@@ -23,15 +23,20 @@ function Find-UniqueFile {
         # .PARAMETER BySize
         # Size matters when comparing
         [Parameter()]
-        [switch]
+        [System.String]
+        [ValidateSet('Larger','Smaller','Both')]
         $BySize
     )
 
     $SourceFiles = Get-ChildItem -Recurse $Source
     $TargetFiles = Get-ChildItem -Recurse $Target
 
-    if ($BySize) {
+    if ($BySize -like 'Both') {
         $UniqueFilenames = Compare-Object $SourceFiles $TargetFiles -Property PSChildName,Length -PassThru | Where-Object SideIndicator -like '=>'
+    }
+    elseif ($BySize -like 'Larger') {
+        $UniqueFilenames = Compare-Object $SourceFiles $TargetFiles -Property PSChildName,Length -PassThru #| Where-Object SideIndicator -like '=>'
+        1
     }
     else {
 #        $UniqueFilenames = (Compare-Object $SourceFiles.PSChildName $TargetFiles | ? SideIndicator -like '=>').InputObject

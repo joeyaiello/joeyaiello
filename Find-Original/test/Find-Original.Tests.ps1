@@ -22,7 +22,13 @@ Describe 'Unit Tests' {
 
     It 'finds uniquely sized files' {
         $correct = (Get-ChildItem "$PSScriptRoot\mockTarget" | sort-object name).FullName
-        $result = (Find-UniqueFile -Source "$PSScriptRoot\mockSource" -Target "$PSScriptRoot\mockTarget" -BySize | sort-object name).FullName
+        $result = (Find-UniqueFile -Source "$PSScriptRoot\mockSource" -Target "$PSScriptRoot\mockTarget" -BySize Both | Sort-Object Name).FullName
+
+        ($result -Join ":") | Should BeExactly ($correct -Join ":")
+    }
+    It 'finds larger sized files' {
+        $correct = (Get-ChildItem "$PSScriptRoot\mockTarget" | sort-object name).FullName
+        $result = (Find-UniqueFile -Source "$PSScriptRoot\mockSource" -Target "$PSScriptRoot\mockTarget" -BySize Larger | Sort-Object Name).FullName
 
         ($result -Join ":") | Should BeExactly ($correct -Join ":")
     }
