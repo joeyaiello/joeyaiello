@@ -16,6 +16,10 @@ if ($isWindows) {
     }
 }
 
+if ($isWindows) {
+	Add-WindowsPSModulePath
+}
+
 # touch
 function touch { New-Item -Type File $args }
 
