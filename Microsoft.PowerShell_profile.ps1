@@ -32,7 +32,6 @@ function which($name) {
 }
 
 # All last minute PATH additions 
-$env:path += ';C:\OpenSSH-Win64'
 $env:path += ";${env:SystemRoot}\Microsoft.Net\Framework\v4.0.30319"
 $env:path += ";C:\tools\nssm-2.24\win64"
 
