@@ -1,6 +1,6 @@
 # Make sure ssh-agent/add can be loaded by posh-git
-Set-Alias ssh-agent "$env:ProgramFiles\git\usr\bin\ssh-agent.exe"
-Set-Alias ssh-add "$env:ProgramFiles\git\usr\bin\ssh-add.exe"
+# Set-Alias ssh-agent "$env:ProgramFiles\git\usr\bin\ssh-agent.exe"
+# Set-Alias ssh-add "$env:ProgramFiles\git\usr\bin\ssh-add.exe"
 
 if ($isWindows) {
     # Load posh-git example profile
