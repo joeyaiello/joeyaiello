@@ -31,10 +31,6 @@ function which($name) {
     Get-Command -Name $name | Select-Object -ExpandProperty Definition
 }
 
-# All last minute PATH additions 
-$env:path += ";${env:SystemRoot}\Microsoft.Net\Framework\v4.0.30319"
-$env:path += ";C:\tools\nssm-2.24\win64"
-
 # Add F5 key binding for PSReadline's CaptureScreen
 if ($isWindows) { Set-PSReadlineKeyHandler -Function CaptureScreen -Chord Ctrl+[ }
 
