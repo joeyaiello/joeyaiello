@@ -1,0 +1,68 @@
+
+<script>
+  function frac(x)
+  {
+    return x - Math.floor(x);
+  }
+
+  function go() {
+    LINES = 100;
+    can = document.getElementById('c');
+    can.onclick = clicked;
+    can.onmousemove = mouseover;
+    ctx = can.getContext('2d');
+
+    WIDTH = can.width = screen.width-32;
+    HEIGHT = can.height = screen.height-128;
+    RIBBONMIN = -7;
+    RIBBONLEN = 6.8;
+    BASE = 0.1;
+    BASEX = BASE * WIDTH;
+    BASEY = BASE * HEIGHT;
+    MOUSEX = 0;
+    MOUSEY = 0;
+    SCALE = 400;
+    OFFSET = 25;
+    ticks = 0;
+    setInterval(tick, 32);
+  }
+  function tick()
+  {
+    ticks++;
+    ctx.fillStyle = "rgb(255, 255, 255)";
+    ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+    ctx.strokeStyle = "rgb(0, 0, 0)";
+    for (var i = 0; i < LINES; i++) {
+        ctx.beginPath();
+        var x = (i * WIDTH/LINES + ticks) % WIDTH;
+        y = HEIGHT;
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, y);
+        ctx.stroke();
+    }
+
+    for (var i = 0; i < LINES; i++) {
+        ctx.beginPath();
+        var x = (i * WIDTH/LINES) % WIDTH;
+        y = HEIGHT;
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x-OFFSET, y);
+        ctx.stroke();
+    }
+  }
+
+  function clicked() {
+    LINES++;
+    console.log("LINES: " + LINES);
+  }
+
+  function mouseover(e) {
+    MOUSEX = e.clientX;
+    MOUSEY= e.clientY;
+    console.log("mouse at: " + MOUSEX + ", " + MOUSEY);
+  }
+</script>
+<body onload=go()>
+  <canvas id=c width=800 height=800></canvas>
+</body>
