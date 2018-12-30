@@ -24,13 +24,26 @@ function Find-UniqueFile {
         # Size matters when comparing
         [Parameter()]
         [switch]
-        $BySize
+        $BySize,
+
+        # .PARAMETER ByHash
+        # Will use file hash values instead of filenames.
+        # This will take considerably longer.
+        [Parameter()]
+        [switch]
+        $ByHash
     )
 
     $SourceFiles = Get-ChildItem -Recurse $Source
     $TargetFiles = Get-ChildItem -Recurse $Target
 
-    if ($BySize) {
+    if ($ByHash) {
+        $SourceHashes = Get-ChildItem -Recurse $SourceFiles | ? Attributes -ne 'Directory' | Get-FileHash
+        $TargetHashes = Get-ChildItem -Recurse $TargetFiles | ? Attributes -ne 'Directory' | Get-FileHash
+
+        $UniqueHashes = Compare-Object $SourceHashes $TargetHashes -Property Hash -PassThru | Where-Object SideIndicator -like '=>'
+    }
+    elseif ($BySize) {
         $UniqueFilenames = Compare-Object $SourceFiles $TargetFiles -Property PSChildName,Length -PassThru | Where-Object SideIndicator -like '=>'
     }
     else {
@@ -42,7 +55,12 @@ function Find-UniqueFile {
     #    $UniqueFile = $TargetFiles | Where-Object PSChildName -like $i.PSChildName
     #}
 
-    $TargetFiles | Where-Object {$UniqueFilenames.PSChildName.Contains($_.PSChildName)}
+    if ($ByHash) {
+        $TargetFiles | Where-Object {(Split-Path -Leaf $UniqueHashes.Path).Contains($_.PSChildName)}
+    }
+    else {
+        $TargetFiles | Where-Object {$UniqueFilenames.PSChildName.Contains($_.PSChildName)}
+    }
 }
 
 Export-ModuleMember -Function Find-UniqueFile
