@@ -26,4 +26,11 @@ Describe 'Unit Tests' {
 
         ($result -Join ":") | Should BeExactly ($correct -Join ":")
     }
+
+    It 'find uniquely hashed, same-sized files' {
+        $correct = (Get-ChildItem "$PSScriptRoot\mockHashTarget\sameSize.txt").FullName
+        $result = (Find-UniqueFile -Source "$PSScriptRoot\mockHashSource" -Target "$PSScriptRoot\mockHashTarget" -ByHash).FullName
+
+        ($result -Join ":") | Should BeExactly ($correct -Join ":")
+    }
 }
