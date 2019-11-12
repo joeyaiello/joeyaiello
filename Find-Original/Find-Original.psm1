@@ -34,12 +34,12 @@ function Find-UniqueFile {
         $ByHash
     )
 
-    $SourceFiles = Get-ChildItem -Recurse $Source
-    $TargetFiles = Get-ChildItem -Recurse $Target
+    $SourceFiles = Get-ChildItem -File -Recurse $Source
+    $TargetFiles = Get-ChildItem -File -Recurse $Target
 
     if ($ByHash) {
-        $SourceHashes = Get-ChildItem -Recurse $SourceFiles | ? Attributes -ne 'Directory' | Get-FileHash
-        $TargetHashes = Get-ChildItem -Recurse $TargetFiles | ? Attributes -ne 'Directory' | Get-FileHash
+        $SourceHashes = $SourceFiles | Get-FileHash
+        $TargetHashes = $TargetFiles | Get-FileHash
 
         $UniqueHashes = Compare-Object $SourceHashes $TargetHashes -Property Hash -PassThru | Where-Object SideIndicator -like '=>'
     }
