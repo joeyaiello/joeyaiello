@@ -6,9 +6,9 @@ Enable-MicrosoftUpdate
 Disable-BingSearch
 Disable-InternetExplorerESC
 # TODO: Figure out Move-LibraryDirectory and Get-LibraryNames
-Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles`
-                           -EnableShowFileExtensions -DisableOpenFileExplorerToQuickAccess`
-                           -DisableShowRecentFilesInQuickAccess -DisableShowFrequentFoldersInQuickAccess`
+Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles `
+                           -EnableShowFileExtensions -DisableOpenFileExplorerToQuickAccess `
+                           -DisableShowRecentFilesInQuickAccess -DisableShowFrequentFoldersInQuickAccess `
                            -EnableShowRibbon
 Set-TaskbarOptions -Size Small -UnLock -Dock Bottom -Combine Never
 Update-ExecutionPolicy -policy Bypass
