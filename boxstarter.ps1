@@ -1,3 +1,6 @@
+## PowerShell 7
+cinst powershell-preview --install-arguments='"ADD\_EXPLORER\_CONTEXT\_MENU\_OPENPOWERSHELL=1 REGISTER\_MANIFEST=1 ENABLE\_PSREMOTING=1"'
+
 Enable-MicrosoftUpdate
 # I think I want Install-WindowsUpdate *first*, but I'm not sure yet
 # Install-WindowsUpdate
@@ -21,9 +24,10 @@ cinst vscode --params ="'/NoDesktopIcon'"
 cinst vscode-powershell
 
 ### Chromium Edge Dev
+
+# leaning heavily on MSA sync right now
 cinst microsoft-edge-insider-dev
-# TODO: how do I install extensions?
-# TODO: is it enough to login with MSA in Win10 to get non-extensions?
+# TODO: figure out how to install extensions without sync
 
 ## Module Installation
 
