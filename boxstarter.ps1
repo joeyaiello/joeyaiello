@@ -18,19 +18,21 @@ Update-ExecutionPolicy -policy Bypass
 
 cinst git --params="'/GitOnlyOnPath /NoShellIntegration /SChannel'"
 
-### VS code
+## VS code
 cinst vscode --params ="'/NoDesktopIcon'"
 # TODO: replace this with an eventual code invocation that gets the preview extension
 cinst vscode-powershell
 
-### Chromium Edge Dev
-
+## Chromium Edge Dev
 # leaning heavily on MSA sync right now
-cinst microsoft-edge-insider-dev
 # TODO: figure out how to install extensions without sync
+# Check out this doc: https://docs.microsoft.com/en-us/deployedge/microsoft-edge-policies#extensions
+cinst microsoft-edge-insider-dev
 
-## Module Installation
+## TODO: Steam
+cinst steam
 
+## TODO: PowerShell Module Installation
 # Hold off on module installs until I figure out PS7
 # Install-Module posh-git
 
