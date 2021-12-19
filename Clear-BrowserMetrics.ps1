@@ -1,0 +1,1 @@
+Remove-Item 'C:\Users\Joey\AppData\Local\Microsoft\Edge Dev\User Data\BrowserMetrics\*'
